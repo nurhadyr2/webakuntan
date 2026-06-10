@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(\"C:/xampp/php/php.exe\" spark *)",
+      "Bash(grep -E '\\\\$routes->' app/Config/Routes.php)",
+      "Bash(grep -v \"^//\")",
+      "Bash(\"C:/xampp/mysql/bin/mysql.exe\" -u root -e \"SHOW DATABASES;\")",
+      "Bash(rm -f read_pdf.php read_pdf2.php readpdf3.php readpdf4.php extract_db.php extract_imgs.php extract_imgs2.php make_png.php)",
+      "Bash(rm -f app/Controllers/Barang.php app/Controllers/Pelanggan.php app/Controllers/Produk.php app/Controllers/Transaksi.php)",
+      "Bash(rm -f app/Models/BarangModel.php app/Models/PelangganModel.php app/Models/ProdukModel.php app/Models/TransaksiModel.php)",
+      "Bash(rm -rf app/Views/barang app/Views/pelanggan app/Views/transaksi)",
+      "Bash(rm -f app/Views/home.php)",
+      "Bash(\"C:/xampp/mysql/bin/mysql.exe\" -u root -e \"CREATE DATABASE IF NOT EXISTS kopkar CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci; SHOW DATABASES LIKE 'kopkar';\")",
+      "Bash(curl -s -m 20 -o public/assets/js/chart.umd.min.js https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js)",
+      "Bash(curl -s -m 10 -o /dev/null -w \"HTTP %{http_code} -> %{redirect_url}\\\\n\" http://localhost:8080/)",
+      "Bash(curl -s -m 10 http://localhost:8080/login)",
+      "Bash(curl -s -m 10 -o /dev/null -w \"HTTP %{http_code} -> %{redirect_url}\\\\n\" http://localhost:8080/dashboard)",
+      "Bash(\"C:/xampp/mysql/bin/mysql.exe\" -u root kopkar -e \"SELECT 'kategori' t, COUNT\\(*\\) n FROM kategori UNION SELECT 'produk', COUNT\\(*\\) FROM produk UNION SELECT 'akun', COUNT\\(*\\) FROM akun_akuntansi;\")",
+      "Read(//c/Program Files/Google/Chrome/Application/**)",
+      "Read(//c/Program Files \\(x86\\)/Microsoft/Edge/Application/**)",
+      "Bash(curl -s -m 10 -c c.txt -d \"username=owner&password=owner123\" -o /dev/null http://localhost:8080/login)",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless --disable-gpu --no-sandbox --hide-scrollbars --window-size=1200,800 --screenshot=\"writable/shot_login.png\" \"http://localhost:8080/login\")",
+      "Bash(rm -f c.txt)",
+      "Bash(\"C:/xampp/mysql/bin/mysql.exe\" -u root kopkar -e \"SELECT id_produk,nama_produk,stok FROM produk;\")",
+      "Bash(curl -s -m 10 -b c.txt -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:8080/transaksi/baru)",
+      "Bash(curl -s -m 10 -b c.txt -L --data-urlencode id_prdk[]=1 --data-urlencode qty[]=3 --data-urlencode bayar=20000 -o /dev/null -w 'HTTP %{http_code} final\\\\n' http://localhost:8080/transaksi/simpan)"
+    ]
+  }
+}

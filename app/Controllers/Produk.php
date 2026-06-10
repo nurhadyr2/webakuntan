@@ -3,110 +3,72 @@
 namespace App\Controllers;
 
 use App\Models\ProdukModel;
+use App\Models\KategoriModel;
 
 class Produk extends BaseController
 {
+    protected ProdukModel $model;
+    protected KategoriModel $kategoriModel;
 
-
-
-    //function constructor untuk harus di buat terlebih dahulu
-    var $ProdukModel;
     public function __construct()
     {
-        $this->ProdukModel = new ProdukModel();
+        $this->model         = new ProdukModel();
+        $this->kategoriModel = new KategoriModel();
     }
 
-
-
-    public function menampilkanData()
+    public function index()
     {
-        
-        $data = [
-            //(id_produk) Menyesuaikan primary key yang ada di soal
-
-            //$this->ProdukModel->orderBy('id_produk', 'asc')->findAll()
-            'array' => []
-        ];
-        return view('home', $data);
-    }
-
-
-
-
-
-
-
-
-
-
-
-    //function untuk masuk ke view/tampilan tambah data
-    public function tambahData()
-    {
-        return view('tambah');
-    }
-
-    //function untuk menyimpan data
-    public function simpanData()
-    {
-        $this->ProdukModel->insert([
-            'id_produk' => $this->request->getVar('id_produk'),
-            'nama_produk' => $this->request->getVar('nama_produk'),
-            'harga' => $this->request->getVar('harga'),
-
+        return view('produk/index', [
+            'title'      => 'Data Produk',
+            'breadcrumb' => 'Master Data / Data Produk',
+            'produk'     => $this->model->withKategori()->orderBy('id_produk', 'DESC')->findAll(),
+            'kategori'   => $this->kategoriModel->orderBy('nama_kategori', 'ASC')->findAll(),
         ]);
-
-        return redirect()->to('/');
     }
 
-
-
-
-
-
-
-
-
-
-
-    //function untuk mengarahkan ke view edit
-    public function edit($id)
+    public function simpan()
     {
-        
-        $data = [
-            //untuk (id_produk) Menyesuaikan primary key yang ada di soal
-            //$this->ProdukModel->where(['id_produk' => $id])->first() 
-            'kolom' => []
-
+        $rules = [
+            'id_kategori' => 'required|is_not_unique[kategori.id_kategori]',
+            'nama_produk' => 'required|max_length[100]',
+            'harga'       => 'required|numeric',
+            'stok'        => 'permit_empty|integer',
         ];
-        return view('edit', $data);
-    }
-
-    
-    //fuuction untuk mengubah data
-    public function ubah($id)
-    {
-        $this->ProdukModel->update($id,[
-            'nama_produk' => $this->request->getVar('nama_produk'),
-            'harga' => $this->request->getVar('harga'),
-
+        if (! $this->validate($rules)) {
+            return redirect()->back()->with('error', implode(' ', $this->validator->getErrors()));
+        }
+        $this->model->insert([
+            'id_kategori' => $this->request->getPost('id_kategori'),
+            'nama_produk' => $this->request->getPost('nama_produk'),
+            'harga'       => $this->request->getPost('harga'),
+            'stok'        => (int) $this->request->getPost('stok'),
         ]);
-
-        return redirect()->to('/');
+        return redirect()->to('/produk')->with('success', 'Produk berhasil ditambahkan.');
     }
 
+    public function update($id)
+    {
+        $rules = [
+            'id_kategori' => 'required|is_not_unique[kategori.id_kategori]',
+            'nama_produk' => 'required|max_length[100]',
+            'harga'       => 'required|numeric',
+            'stok'        => 'permit_empty|integer',
+        ];
+        if (! $this->validate($rules)) {
+            return redirect()->back()->with('error', implode(' ', $this->validator->getErrors()));
+        }
+        $this->model->update($id, [
+            'id_kategori' => $this->request->getPost('id_kategori'),
+            'nama_produk' => $this->request->getPost('nama_produk'),
+            'harga'       => $this->request->getPost('harga'),
+            'stok'        => (int) $this->request->getPost('stok'),
+        ]);
+        return redirect()->to('/produk')->with('success', 'Produk berhasil diperbarui.');
+    }
 
-
-
-
-
-
-
-
-    //function untuk hapus data
     public function hapus($id)
     {
-        $this->ProdukModel->delete($id);
-        return redirect()->to('/');
+        $this->model->delete($id);
+        return redirect()->to('/produk')->with('success', 'Produk berhasil dihapus.');
     }
 }
