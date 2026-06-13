@@ -52,14 +52,14 @@ function navActive($seg, $current) { return $seg === $current ? 'active' : ''; }
 
             <div class="nav-section">Laporan</div>
             <a class="nav-link-side <?= navActive('laporan-penjualan', $current) ?>" href="<?= base_url('laporan-penjualan') ?>"><span class="ico"><i class="fa-solid fa-chart-line"></i></span> Laporan Penjualan</a>
+            <?php if ($role === 'owner'): ?>
+            <a class="nav-link-side <?= navActive('laporan-labarugi', $current) ?>" href="<?= base_url('laporan-labarugi') ?>"><span class="ico"><i class="fa-solid fa-sack-dollar"></i></span> Laporan Laba Rugi</a>
+            <?php endif; ?>
 
             <?php if ($role === 'owner'): ?>
             <div class="nav-section">Catatan Akuntansi</div>
             <a class="nav-link-side <?= navActive('jurnal', $current) ?>" href="<?= base_url('jurnal') ?>"><span class="ico"><i class="fa-solid fa-book-open"></i></span> Jurnal Umum</a>
             <a class="nav-link-side <?= navActive('bukubesar', $current) ?>" href="<?= base_url('bukubesar') ?>"><span class="ico"><i class="fa-solid fa-book-bookmark"></i></span> Buku Besar</a>
-
-            <div class="nav-section">Laporan Akuntansi</div>
-            <a class="nav-link-side <?= navActive('laporan-labarugi', $current) ?>" href="<?= base_url('laporan-labarugi') ?>"><span class="ico"><i class="fa-solid fa-sack-dollar"></i></span> Laporan Laba Rugi</a>
             <?php endif; ?>
 
             <div class="nav-section">Akun</div>
