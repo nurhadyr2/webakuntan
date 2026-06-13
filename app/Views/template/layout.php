@@ -43,7 +43,6 @@ function navActive($seg, $current) { return $seg === $current ? 'active' : ''; }
             <div class="nav-section">Master Data</div>
             <a class="nav-link-side <?= navActive('kategori', $current) ?>" href="<?= base_url('kategori') ?>"><span class="ico"><i class="fa-solid fa-tags"></i></span> Kategori</a>
             <a class="nav-link-side <?= navActive('produk', $current) ?>" href="<?= base_url('produk') ?>"><span class="ico"><i class="fa-solid fa-box"></i></span> Data Produk</a>
-            <a class="nav-link-side <?= navActive('stok', $current) ?>" href="<?= base_url('stok') ?>"><span class="ico"><i class="fa-solid fa-warehouse"></i></span> Stok Barang</a>
             <a class="nav-link-side <?= navActive('akun', $current) ?>" href="<?= base_url('akun') ?>"><span class="ico"><i class="fa-solid fa-book"></i></span> Akun Akuntansi</a>
             <?php endif; ?>
 
@@ -51,13 +50,15 @@ function navActive($seg, $current) { return $seg === $current ? 'active' : ''; }
             <a class="nav-link-side <?= navActive('transaksi', $current) ?>" href="<?= base_url('transaksi') ?>"><span class="ico"><i class="fa-solid fa-cart-shopping"></i></span> Transaksi</a>
             <a class="nav-link-side <?= navActive('histori', $current) ?>" href="<?= base_url('histori') ?>"><span class="ico"><i class="fa-solid fa-receipt"></i></span> Histori Transaksi</a>
 
+            <div class="nav-section">Laporan</div>
+            <a class="nav-link-side <?= navActive('laporan-penjualan', $current) ?>" href="<?= base_url('laporan-penjualan') ?>"><span class="ico"><i class="fa-solid fa-chart-line"></i></span> Laporan Penjualan</a>
+
             <?php if ($role === 'owner'): ?>
             <div class="nav-section">Catatan Akuntansi</div>
             <a class="nav-link-side <?= navActive('jurnal', $current) ?>" href="<?= base_url('jurnal') ?>"><span class="ico"><i class="fa-solid fa-book-open"></i></span> Jurnal Umum</a>
             <a class="nav-link-side <?= navActive('bukubesar', $current) ?>" href="<?= base_url('bukubesar') ?>"><span class="ico"><i class="fa-solid fa-book-bookmark"></i></span> Buku Besar</a>
 
-            <div class="nav-section">Laporan</div>
-            <a class="nav-link-side <?= navActive('laporan-penjualan', $current) ?>" href="<?= base_url('laporan-penjualan') ?>"><span class="ico"><i class="fa-solid fa-chart-line"></i></span> Laporan Penjualan</a>
+            <div class="nav-section">Laporan Akuntansi</div>
             <a class="nav-link-side <?= navActive('laporan-labarugi', $current) ?>" href="<?= base_url('laporan-labarugi') ?>"><span class="ico"><i class="fa-solid fa-sack-dollar"></i></span> Laporan Laba Rugi</a>
             <?php endif; ?>
 

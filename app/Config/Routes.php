@@ -22,6 +22,9 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
     $routes->get('histori', 'Histori::index');
     $routes->get('histori/detail/(:num)', 'Histori::detail/$1');
 
+    $routes->get('laporan-penjualan', 'Laporan::penjualan');
+    $routes->get('laporan-penjualan/cetak', 'Laporan::cetakPenjualan');
+
     $routes->group('', ['filter' => 'role:owner'], static function ($routes) {
         $routes->get('kategori', 'Kategori::index');
         $routes->post('kategori/simpan', 'Kategori::simpan');
@@ -33,10 +36,6 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
         $routes->post('produk/update/(:num)', 'Produk::update/$1');
         $routes->get('produk/hapus/(:num)', 'Produk::hapus/$1');
 
-        $routes->get('stok', 'Stok::index');
-        $routes->post('stok/simpan', 'Stok::simpan');
-        $routes->get('stok/hapus/(:num)', 'Stok::hapus/$1');
-
         $routes->get('akun', 'Akun::index');
         $routes->post('akun/simpan', 'Akun::simpan');
         $routes->post('akun/update/(:num)', 'Akun::update/$1');
@@ -45,8 +44,6 @@ $routes->group('', ['filter' => 'auth'], static function ($routes) {
         $routes->get('jurnal', 'Jurnal::index');
         $routes->get('bukubesar', 'BukuBesar::index');
 
-        $routes->get('laporan-penjualan', 'Laporan::penjualan');
-        $routes->get('laporan-penjualan/cetak', 'Laporan::cetakPenjualan');
         $routes->get('laporan-labarugi', 'Laporan::labaRugi');
         $routes->get('laporan-labarugi/cetak', 'Laporan::cetakLabaRugi');
     });

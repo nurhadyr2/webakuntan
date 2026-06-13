@@ -15,13 +15,13 @@
                 <div class="brand-logo">SP</div>
                 <div class="brand-text">
                     <strong>Sistem Penjualan</strong>
-                    <span>Akuntansi &amp; Kasir</span>
+                    <span>Owner &amp; Kasir</span>
                 </div>
             </div>
 
             <div class="login-hero">
                 <span class="login-tag">Sistem Informasi Akuntansi Penjualan</span>
-                <h1>Kelola Penjualan &amp; Akuntansi dalam Satu Sistem</h1>
+                <h1>Sistem Informasi Akuntansi Penjualan Toko Qonita Jaya</h1>
                 <p>Transaksi kasir cepat, pencatatan jurnal otomatis, sampai laporan keuangan — semuanya dalam satu aplikasi.</p>
                 <ul class="feature-list">
                     <li><i class="fa-solid fa-circle-check"></i> Transaksi kasir dengan invoice otomatis</li>
@@ -59,10 +59,6 @@
                         <i class="fa-solid fa-right-to-bracket me-1"></i> Masuk ke Sistem
                     </button>
                 </form>
-
-                <div class="demo">
-                    Demo &mdash; Owner: <b>owner / owner123</b> &middot; Kasir: <b>kasir / kasir123</b>
-                </div>
             </div>
         </main>
     </div>
